@@ -8,7 +8,7 @@ from utils.Config.config import Config
 def run():
     """Builds model, loads data, trains and evaluates"""
 
-    conf = Config('C:\\Users\\Admin\\Desktop\\MLProject\\configs\\config.xml')
+    conf = Config('configs\\config.xml')
 
     print(conf.Data.path, conf.Data.image_size, conf.Data.load_with_info)
     print(conf.Train.batch_size, conf.Train.nrof_epoch, conf.Train.optimizer,conf.Train.metrics)
