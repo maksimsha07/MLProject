@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """ main.py """
 
+from datasets.mnist_dataset import MNISTDataset
+from enums.Datasets import DataSetType
 from utils.Config.config import Config
 #from model.ExampleModel import ExampleModel
 
@@ -10,9 +12,9 @@ def run():
 
     conf = Config('configs\\config.xml')
 
-    print(conf.Data.path, conf.Data.image_size, conf.Data.load_with_info)
-    print(conf.Train.batch_size, conf.Train.nrof_epoch, conf.Train.optimizer,conf.Train.metrics)
-    print(conf.Model.input, conf.Model.up_stack, conf.Model.acivation_function, conf.Model.output)
+    dataset = MNISTDataset(dataset_type=DataSetType.Train)
+
+    print(dataset.show_stat())
     #model = ExampleModel(CFG)
     #model.load_data()
     #model.build()
