@@ -3,9 +3,10 @@
         <path>KMNIST</path>
         <image_size>28</image_size>
         <load_with_info>True</load_with_info>
+        <nrof_classes>10</nrof_classes>
     </data>
     <train>
-        <batch_size>64</batch_size>
+        <batch_size>9</batch_size>
         <nrof_epoch>20</nrof_epoch>
         <optimizer>
             <type>adam</type>

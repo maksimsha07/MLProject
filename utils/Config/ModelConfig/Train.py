@@ -36,8 +36,8 @@ class Train(BaseModelConfig):
         super().__init__(dataModel)
 
     def _parse_xml_to_datamodel(self,datamodel):
-        self.__batch_size = datamodel.find('batch_size').text
-        self.__nrof_epoch = datamodel.find('nrof_epoch').text
+        self.__batch_size = int(datamodel.find('batch_size').text)
+        self.__nrof_epoch = int(datamodel.find('nrof_epoch').text)
 
         for optimizer in datamodel.find('optimizer'):
             self.__optimizer.update({optimizer.tag : optimizer.text})

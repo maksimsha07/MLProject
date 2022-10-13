@@ -10,6 +10,8 @@ class Data(BaseModelConfig):
     """Размерность изображения"""
     __load_with_info = NULL
     """Подгружать ли доп информацию"""
+    __nrof_classes = NULL
+    """Количество классов"""
 
     @property
     def path(self):
@@ -23,6 +25,10 @@ class Data(BaseModelConfig):
     def load_with_info(self):
         return self.__load_with_info
 
+    @property
+    def nrof_classes(self):
+        return self.__nrof_classes
+
     def __init__(self,dataModel):
         super().__init__(dataModel)
 
@@ -30,3 +36,4 @@ class Data(BaseModelConfig):
         self.__path = datamodel.find('path').text
         self.__image_size = datamodel.find('image_size').text
         self.__load_with_info = datamodel.find('load_with_info').text
+        self.__nrof_classes = datamodel.find('nrof_classes').text

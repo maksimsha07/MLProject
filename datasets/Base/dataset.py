@@ -16,5 +16,5 @@ class BaseDataSet(ABC):
         pass
 
     @abstractmethod
-    def show_stat(self):
+    def show_statistics(self):
         pass
