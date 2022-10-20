@@ -3,6 +3,8 @@ from dataloader.dataloader import DataLoader
 from datasets.mnist_dataset import MNISTDataset
 from enums.Datasets import DataSetType
 from utils.Config.config import Config
+from utils.Transform import Normalize, View
+from matplotlib import pyplot as plt
 
 
 def run():
@@ -10,7 +12,7 @@ def run():
     conf = Config('configs\\config.xml')
 
     #Инициализация тренировочного датасета
-    train_ds = MNISTDataset(dataset_type=DataSetType.Train, transforms= [],nrof_classes=conf.Data.nrof_classes)
+    train_ds = MNISTDataset(dataset_type=DataSetType.Train, transforms= [Normalize(),View()],nrof_classes=conf.Data.nrof_classes)
     #Инициализация тестового датасета
     test_ds = MNISTDataset(dataset_type=DataSetType.Test, transforms=[], nrof_classes=conf.Data.nrof_classes,
                             image_file_name='t10k-images-idx3-ubyte',
@@ -20,8 +22,8 @@ def run():
     test_ds._read_data()
 
     #Инифиализация даталоадера с тренировочным и тестовым датасетом
-    train_dataloared = DataLoader(train_ds,None,conf.Train.batch_size,None,conf.Train.nrof_epoch)
-    test_dataloader = DataLoader(test_ds,None,conf.Train.batch_size,None,conf.Train.nrof_epoch)
+    train_dataloared = DataLoader(train_ds,conf.Train.batch_size,None,conf.Train.nrof_epoch)
+    test_dataloader = DataLoader(test_ds,conf.Train.batch_size,None,conf.Train.nrof_epoch)
 
     #Берем один батч из тренировочной и тестовой выборки и показываем его
     next(train_dataloared.batch_generator())

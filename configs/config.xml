@@ -4,6 +4,7 @@
         <image_size>28</image_size>
         <load_with_info>True</load_with_info>
         <nrof_classes>10</nrof_classes>
+        <shuffle>True</shuffle>
     </data>
     <train>
         <batch_size>9</batch_size>

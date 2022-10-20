@@ -12,6 +12,7 @@ class Data(BaseModelConfig):
     """Подгружать ли доп информацию"""
     __nrof_classes = NULL
     """Количество классов"""
+    __shuffle = NULL
 
     @property
     def path(self):
@@ -29,6 +30,10 @@ class Data(BaseModelConfig):
     def nrof_classes(self):
         return self.__nrof_classes
 
+    @property
+    def shuffle(self):
+        return self.__shuffle;
+
     def __init__(self,dataModel):
         super().__init__(dataModel)
 
@@ -37,3 +42,4 @@ class Data(BaseModelConfig):
         self.__image_size = datamodel.find('image_size').text
         self.__load_with_info = datamodel.find('load_with_info').text
         self.__nrof_classes = datamodel.find('nrof_classes').text
+        self.__shuffle = datamodel.find('shuffle').text

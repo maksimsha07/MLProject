@@ -4,7 +4,9 @@ from matplotlib import pyplot as plt
 class DataLoader:
     """Data Loader class"""
 
-    def __init__(self,dataset,shuffle,batch_size,sample_type,epoch_size=None):
+    def __init__(self,dataset,batch_size,sample_type,
+    epoch_size=None,
+    shuffle = True):
         self.__dataset = dataset
         self.__batch_size = batch_size
         self.__shuffle = shuffle
@@ -17,7 +19,8 @@ class DataLoader:
         Создание батчей на эпоху с учетом указанного размера эпохи и типа сэмплирования.
         """
         indexes = np.arange(len(self.__dataset))
-        np.random.shuffle(indexes)
+        if(self.__shuffle):
+            np.random.shuffle(indexes)
         for i in range(0, len(indexes), self.__batch_size):
             self.__batch_img = self.__dataset[indexes[i: i+self.__batch_size]]
             yield self.__batch_img
@@ -29,10 +32,6 @@ class DataLoader:
         :return:
         """
         img, label =  self.__batch_img
-        
-        for image in img:            
-            image = np.array(image, dtype='uint8')
-            image = image.reshape((28, 28))
 
         pic_box = plt.figure(figsize=(10,6))
 
